@@ -1,0 +1,7 @@
+{
+  "name": "mentor-parser",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "Bryan Terce <bryan.terce@gmail.com>",
+  "license": "MIT"
+}

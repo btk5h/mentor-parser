@@ -5,7 +5,10 @@
   "author": "Bryan Terce <bryan.terce@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build:peg:dfa": "pegjs --allowed-start-rules DFAGrammar -o lib/parsers/dfa.generated.js mentor.pegjs",
+    "clean": "rm -rf dist",
+    "build": "run-s clean build:peg:* build:src",
+    "build:peg:dfa": "pegjs --allowed-start-rules DFAGrammar -o src/parsers/dfa.generated.js mentor.pegjs",
+    "build:src": "rollup -c",
     "fix:format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore",
     "test:format": "prettier --check \"**/*.{js,json}\" --ignore-path .gitignore"
   },
@@ -15,9 +18,15 @@
     }
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.1.0",
     "husky": "^4.2.5",
+    "npm-run-all": "^4.1.5",
     "pegjs": "^0.10.0",
     "prettier": "2.0.4",
-    "pretty-quick": "^2.0.1"
+    "pretty-quick": "^2.0.1",
+    "rollup": "^2.6.1",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-typescript2": "^0.27.0",
+    "typescript": "^3.8.3"
   }
 }

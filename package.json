@@ -5,6 +5,7 @@
   "author": "Bryan Terce <bryan.terce@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "build:peg:dfa": "pegjs --allowed-start-rules DFAGrammar -o lib/parsers/dfa.generated.js mentor.pegjs",
     "fix:format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore",
     "test:format": "prettier --check \"**/*.{js,json}\" --ignore-path .gitignore"
   },
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "husky": "^4.2.5",
+    "pegjs": "^0.10.0",
     "prettier": "2.0.4",
     "pretty-quick": "^2.0.1"
   }

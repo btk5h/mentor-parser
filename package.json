@@ -3,5 +3,19 @@
   "version": "0.1.0",
   "main": "index.js",
   "author": "Bryan Terce <bryan.terce@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "fix:format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore",
+    "test:format": "prettier --check \"**/*.{js,json}\" --ignore-path .gitignore"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "prettier": "2.0.4",
+    "pretty-quick": "^2.0.1"
+  }
 }

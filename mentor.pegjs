@@ -38,8 +38,8 @@ DFATransition "transition" =
   "(" _ char:Character _ "->" _ state:State ")"
   { return { char, state } }
 
-State = $ [a-zA-Z0-9]+
-Character = [a-zA-Z0-9]
+State "state" = $ [a-zA-Z0-9]+
+Character "character" = [a-zA-Z0-9]
 
 BlockSeparator "new line" = [ \t]* "\n" [ \t\n]*
 FileEdge "edge of file" = [ \t\n\r]*

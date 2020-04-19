@@ -35,7 +35,7 @@ describe("minimal DFA", () => {
         state: "Q0",
         transitions: [
           {
-            char: "a",
+            symbol: "a",
             state: "Q0",
           },
         ],

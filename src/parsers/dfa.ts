@@ -1,16 +1,16 @@
 import * as parser from "./dfa.generated";
 
-type Transition = {
-  char: string;
+export type Transition = {
+  symbol: string;
   state: string;
 };
 
-type StateTransition = {
+export type StateTransition = {
   state: string;
   transitions: Transition[];
 };
 
-type DFA = {
+export type DFA = {
   alphabet: string[];
   initialState: string;
   acceptingStates: string[];

@@ -9,8 +9,8 @@ DFAGrammar =
 
 AlphabetDefinition =
   "alphabet:" _ "{" _
-  	head:Character
-    tail:(_ "," _ v:Character { return v })*
+  	head:Symbol
+    tail:(_ "," _ v:Symbol { return v })*
   _ "}"
   { return [head, ...tail] }
 
@@ -35,11 +35,11 @@ DFAStateTransition "state transition" =
   { return { state, transitions } }
 
 DFATransition "transition" =
-  "(" _ char:Character _ "->" _ state:State ")"
-  { return { char, state } }
+  "(" _ symbol:Symbol _ "->" _ state:State ")"
+  { return { symbol, state } }
 
 State "state" = $ [a-zA-Z0-9]+
-Character "character" = [a-zA-Z0-9]
+Symbol "symbol" =  $ [a-zA-Z0-9]+
 
 BlockSeparator "new line" = [ \t]* "\n" [ \t\n]*
 FileEdge "edge of file" = [ \t\n\r]*

@@ -57,11 +57,12 @@ NFAStateTransition "state transition" =
   { return { state, transitions } }
 
 NFATransition "transition" =
-  "(" _ symbol:(Symbol / "_" ) _ "->" _ state:State ")"
+  "(" _ symbol:(Symbol / EmptySymbol) _ "->" _ state:State ")"
   { return { symbol, state } }
 
 State "state" = $ [a-zA-Z0-9]+
 Symbol "symbol" =  $ [a-zA-Z0-9]+
+EmptySymbol "lambda transition" = "_" { return "" }
 
 BlockSeparator "new line" = [ \t]* "\n" [ \t\n]*
 FileEdge "edge of file" = [ \t\n\r]*

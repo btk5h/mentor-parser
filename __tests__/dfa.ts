@@ -1,5 +1,5 @@
 import { stripIndent } from "common-tags";
-import { parseDFA } from "../src/index";
+import { parseDFA, parseNFA } from "../src/index";
 
 describe("invalid DFA", () => {
   it("fails DFAs with an empty alphabet", () => {
@@ -53,5 +53,36 @@ describe("minimal DFA", () => {
     `;
 
     expect(parseDFA(dfa)).toStrictEqual(expected);
+  });
+});
+
+describe("minimal NFA", () => {
+  const expected = {
+    alphabet: ["a"],
+    initialState: "Q0",
+    acceptingStates: ["Q0"],
+    stateTransitions: [
+      {
+        state: "Q0",
+        transitions: [
+          {
+            symbol: "",
+            state: "Q0",
+          },
+        ],
+      },
+    ],
+  };
+
+  it("parses a simple NFA", () => {
+    const dfa = stripIndent`
+      alphabet: {a}
+      start: Q0
+      accepting: {Q0}
+      
+      Q0 (_ -> Q0) 
+    `;
+
+    expect(parseNFA(dfa)).toStrictEqual(expected);
   });
 });

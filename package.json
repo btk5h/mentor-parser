@@ -6,8 +6,10 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "run-s clean build:peg:* build:src",
+    "build": "run-s clean build:peg build:src",
+    "build:peg": "run-p build:peg:*",
     "build:peg:dfa": "pegjs --allowed-start-rules DFAGrammar -o src/parsers/dfa.generated.js mentor.pegjs",
+    "build:peg:nfa": "pegjs --allowed-start-rules NFAGrammar -o src/parsers/nfa.generated.js mentor.pegjs",
     "build:src": "rollup -c",
     "fix:format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore",
     "test": "run-p test:*",

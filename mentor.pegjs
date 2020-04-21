@@ -7,6 +7,15 @@ DFAGrammar =
   FileEdge
   { return { alphabet, initialState, acceptingStates, stateTransitions } }
 
+NFAGrammar =
+  FileEdge
+  alphabet:AlphabetDefinition BlockSeparator
+  initialState:InitialStateDefinition BlockSeparator
+  acceptingStates:AcceptingStatesDefinition BlockSeparator
+  stateTransitions:NFAStateTransitionsDefinition
+  FileEdge
+  { return { alphabet, initialState, acceptingStates, stateTransitions } }
+
 AlphabetDefinition =
   "alphabet:" _ "{" _
   	head:Symbol
@@ -36,6 +45,19 @@ DFAStateTransition "state transition" =
 
 DFATransition "transition" =
   "(" _ symbol:Symbol _ "->" _ state:State ")"
+  { return { symbol, state } }
+
+NFAStateTransitionsDefinition =
+  head:NFAStateTransition
+  tail:(BlockSeparator v:NFAStateTransition { return v })*
+  { return [head, ...tail] }
+
+NFAStateTransition "state transition" =
+  state:State transitions:(_ v:NFATransition { return v })+
+  { return { state, transitions } }
+
+NFATransition "transition" =
+  "(" _ symbol:(Symbol / "_" ) _ "->" _ state:State ")"
   { return { symbol, state } }
 
 State "state" = $ [a-zA-Z0-9]+

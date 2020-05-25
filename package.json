@@ -12,6 +12,7 @@
     "build:peg:nfa": "pegjs --allowed-start-rules NFAGrammar -o src/parsers/nfa.generated.js mentor.pegjs",
     "build:peg:regex": "pegjs --allowed-start-rules RegularExpressionGrammar -o src/parsers/regex.generated.js regex.pegjs",
     "build:peg:cfg": "pegjs --allowed-start-rules ContextFreeGrammar -o src/parsers/cfg.generated.js cfg.pegjs",
+    "build:peg:pda": "pegjs --allowed-start-rules PDAGrammar -o src/parsers/pda.generated.js pda.pegjs",
     "build:src": "rollup -c",
     "fix:format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore",
     "test": "run-p test:*",

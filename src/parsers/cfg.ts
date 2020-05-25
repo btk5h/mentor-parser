@@ -5,7 +5,10 @@ export type ProductionRule = {
   to: string[][];
 };
 
-export type ContextFreeGrammar = ProductionRule[];
+export type ContextFreeGrammar = {
+  terminals: string[];
+  productions: ProductionRule[];
+};
 
 export function parse(input: string): ContextFreeGrammar {
   return parser.parse(input) as ContextFreeGrammar;
